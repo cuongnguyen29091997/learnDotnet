@@ -24,6 +24,8 @@ namespace BookStore.Models
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Categorybook> Categorybook { get; set; }
 
+        public virtual DbSet<Userdetails> Userdetails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -150,6 +152,27 @@ namespace BookStore.Models
                 entity.HasMany(d => d.ChildMenus).
                     WithOne(d => d.Parent).
                     HasForeignKey(d => d.ParentId);
+
+            modelBuilder.Entity<Userdetails>(entity =>
+            {
+                entity.ToTable("userdetails");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
             });
             OnModelCreatingPartial(modelBuilder);
         }

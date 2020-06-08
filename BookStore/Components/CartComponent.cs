@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BookStore.Controllers;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Components
@@ -28,6 +29,12 @@ namespace BookStore.Components
             ViewData.Model = books;
             ViewData["quantity"] = bookIds.Count;
             ViewData["total"] = total;
+
+            var username = HttpContext.Session.GetString("userId");
+            ViewData["username"] = null;
+            if(username != null && !username.Equals("")) {
+                ViewData["username"] = username;
+            }
             return View();
         }
     }
