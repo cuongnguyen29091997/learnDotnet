@@ -1,0 +1,56 @@
+                                <div class="cart-widget">
+                                    <div class="login-block">
+                                        <a href="login-register.html" class="font-weight-bold">Login</a> <br>
+                                        <span>or</span><a href="login-register.html">Register</a>
+                                    </div>
+                                    <div class="cart-block">
+                                        <div class="cart-total">
+                                            <span class="text-number">
+                                                @ViewData["quantity"]
+                                            </span>
+                                            <span class="text-item">
+                                                Shopping Cart
+                                            </span>
+                                            <span class="price">
+                                                £@ViewData["total"]
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <div class="cart-dropdown-block">
+                                            <div class=" single-cart-block ">
+                                                @foreach (var item in ViewData.Model)
+                                                {
+                                                <div class="cart-product">
+                                                    <a href="product-details.html" class="image">
+                                                        <img src="~/image/products/cart-product-1.jpg" alt="">
+                                                    </a>
+                                                    <div class="content">
+                                                        <h3 class="title">
+                                                            <a href="product-details.html">
+                                                                @item.Key.Title
+                                                            </a>
+                                                        </h3>
+                                                        <p class="price"><span class="qty">@item.Value ×</span> £@(item.Key.Price * (100 - item.Key.DiscountedPrice) / 100.0)</p>
+                                                        <button class="cross-btn" onclick="removeFromCart(@item.Key.Id)"><i class="fas fa-times"></i></button>
+                                                    </div>
+                                                </div>
+                                                }
+                                            </div>
+                                            <div class=" single-cart-block ">
+                                                <div class="btn-block">
+                                                    <a href="@Url.Action("Index", "Cart")" class="btn">
+                                                        View Cart <i class="fas fa-chevron-right"></i>
+                                                    </a>
+                                                    <a href="checkout.html" class="btn btn--primary">
+                                                        Check Out <i class="fas fa-chevron-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<script>
+    function removeFromCart(id) {
+        window.location.href = '@Url.Action("RemoveProduct", "Cart")?id=' + id;
+    }
+</script>

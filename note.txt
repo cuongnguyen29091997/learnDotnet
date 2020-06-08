@@ -1,0 +1,6 @@
+Tìm hiểu về product back log
+- Làm left sidebar:
+    + Tạo migration category parent id 
+    + Drop column sau, tạo lại column và sau đó update data.
+    + Delete & insert data có thể tạo với 1 mảng
+    

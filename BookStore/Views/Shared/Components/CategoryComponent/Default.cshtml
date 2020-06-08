@@ -1,0 +1,35 @@
+@model System.Collections.Generic.List<BookStore.Models.Category>
+<ul class="category-menu">
+    @foreach (Category category in Model)
+    {
+        @if(@category.ParentID != null) continue;
+    <li class="cat-item @(category.childCategories != null && category.childCategories.Count > 0 ? "has-children" : "")">
+        <a href="@Url.Action("Category", "Book", new { catId = category.Id })">@category.Title
+            @{
+                int count = category.Categorybook != null ? category.Categorybook.Count : 0;
+                if (category.childCategories != null && category.childCategories.Count > 0)
+                    foreach(Category cat in category.childCategories) {
+                        count += cat.Categorybook != null ? cat.Categorybook.Count : 0;
+                    }
+            }
+            (@count)
+        </a>
+            @if (category.childCategories != null && category.childCategories.Count > 0)
+            {
+                <ul>
+                    @foreach (Category categoryItem in category.childCategories)
+                    {
+                        <li class="cat-item"><a href="@Url.Action("Category", "Book", new { catId = categoryItem.Id })">@categoryItem.Title
+                            (@if (categoryItem.Categorybook != null)
+                            {
+                                @categoryItem.Categorybook.Count
+                            } else {
+                                <span>0</span>
+                            })
+                        </a></li>
+                    }
+                </ul>
+            }
+    </li>
+    }
+</ul>
