@@ -78,7 +78,7 @@ namespace BookStore.Controllers
         public  IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return View("Login-Register");
+           return RedirectToAction("Index", "Home");
         }
     }
 }
