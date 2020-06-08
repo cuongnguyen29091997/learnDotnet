@@ -30,7 +30,7 @@
                                                                 @item.Key.Title
                                                             </a>
                                                         </h3>
-                                                        <p class="price"><span class="qty">@item.Value ×</span> £@(item.Key.Price * (100 - item.Key.DiscountedPrice) / 100.0)</p>
+                                                        <p class="price"><span class="qty">@item.Value ×</span> £@item.Key.Price</p>
                                                         <button class="cross-btn" onclick="removeFromCart(@item.Key.Id)"><i class="fas fa-times"></i></button>
                                                     </div>
                                                 </div>

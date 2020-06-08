@@ -23,7 +23,7 @@ namespace BookStore.Components
             var books = _bookService.FindAll(bookIds);
             var total = 0.0;
             foreach(var bookD in books) {
-                total += bookD.Value * (bookD.Key.Price * (100 - bookD.Key.DiscountedPrice) / 100.0);
+                total += bookD.Value * bookD.Key.Price;
             }
             ViewData.Model = books;
             ViewData["quantity"] = bookIds.Count;
