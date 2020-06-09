@@ -6,7 +6,7 @@ namespace BookStore.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.InsertData("userdetails", new string[] {"id", "Name", "email","password"}, new object[,]
+            migrationBuilder.InsertData("userdetails", new string[] {"id", "name", "email","password"}, new object[,]
             {
                 {1, "Cường Nguyễn", "quoccuong@gmail.com", "123456" },
                 {2, "Cường Nguyễn Quốc", "quoccuong1234@gmail.com", "123456" },
